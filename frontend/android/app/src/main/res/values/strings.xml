@@ -1,0 +1,8 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">FasalDekho</string>
+    <string name="title_activity_main">FasalDekho</string>
+    <string name="package_name">com.FasalDekho.app</string>
+    <string name="custom_url_scheme">com.FasalDekho.app</string>
+</resources>
+

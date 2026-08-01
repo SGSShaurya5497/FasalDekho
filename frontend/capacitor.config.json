@@ -1,0 +1,14 @@
+{
+  "appId": "com.fasaldekho.app",
+  "appName": "FasalDekho",
+  "webDir": "build",
+  "server": {
+    "androidScheme": "https"
+  },
+  "plugins": {
+    "Camera": {
+      "saveToGallery": false
+    },
+    "Geolocation": {}
+  }
+}

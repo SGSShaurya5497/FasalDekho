@@ -1,0 +1,50 @@
+# Python / Backend
+backend/venv/
+backend/.venv/
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+.env
+*.log
+logs/
+*.db
+*.sqlite3
+
+# Node / Frontend
+frontend/node_modules/
+frontend/build/
+frontend/.env.local
+frontend/.env.*.local
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+
+# Android (generated build artifacts only — source kept)
+frontend/android/.gradle/
+frontend/android/build/
+frontend/android/app/build/
+frontend/android/local.properties
+frontend/android/.idea/
+
+# Capacitor
+frontend/android/app/src/main/assets/public/
+
+# ML Models (large binary files — add manually or via Git LFS)
+Models/*.h5
+Models/*.tflite
+
+# Misc
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/
+.idea/
