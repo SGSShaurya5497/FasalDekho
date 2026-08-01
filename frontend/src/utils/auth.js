@@ -1,4 +1,4 @@
-﻿// Auth API service and token helper
+// Auth API service and token helper
 import API_BASE from "./api";
 const API_URL = API_BASE;
 

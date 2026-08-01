@@ -1,4 +1,4 @@
-﻿apply plugin: 'com.android.application'
+apply plugin: 'com.android.application'
 
 android {
     namespace = "com.fasaldekho.app"
@@ -52,4 +52,3 @@ try {
 } catch(Exception e) {
     logger.info("google-services.json not found, google-services plugin not applied. Push Notifications won't work")
 }
-

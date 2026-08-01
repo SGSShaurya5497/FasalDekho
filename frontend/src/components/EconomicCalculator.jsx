@@ -190,9 +190,42 @@ const EconomicCalculator = ({ lang }) => {
 
             <p className="text-xs sm:text-sm font-medium opacity-95 text-gray-800">{result.rationale}</p>
 
+            {/* Financial Trade-off Chart */}
+            <div className="bg-white/70 border border-slate-100 rounded-xl p-3 space-y-3">
+              <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Financial Benefit Visualizer (per Acre)</span>
+              
+              {/* Cost Bar */}
+              <div className="space-y-1">
+                <div className="flex justify-between text-[11px] font-medium text-slate-600">
+                  <span>Treatment Cost</span>
+                  <span className="font-bold">₹{treatmentCost}</span>
+                </div>
+                <div className="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
+                  <div 
+                    className="h-full bg-rose-500 rounded-full" 
+                    style={{ width: `${Math.min(100, (treatmentCost / Math.max(1, treatmentCost + result.net_benefit_per_acre)) * 100)}%` }}
+                  />
+                </div>
+              </div>
+
+              {/* Benefit Bar */}
+              <div className="space-y-1">
+                <div className="flex justify-between text-[11px] font-medium text-slate-600">
+                  <span>Potential Crop Value Saved</span>
+                  <span className="font-bold text-emerald-600">₹{Math.max(0, treatmentCost + result.net_benefit_per_acre)}</span>
+                </div>
+                <div className="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
+                  <div 
+                    className="h-full bg-emerald-500 rounded-full" 
+                    style={{ width: `${Math.min(100, ((treatmentCost + result.net_benefit_per_acre) / Math.max(1, treatmentCost + result.net_benefit_per_acre)) * 100)}%` }}
+                  />
+                </div>
+              </div>
+            </div>
+
             <div className="grid grid-cols-2 gap-2 text-xs pt-2 border-t border-gray-200">
               <div>Est. Yield Loss: <strong>{result.estimated_yield_loss_percent}%</strong></div>
-              <div>Net Protection: <strong>₹{result.net_benefit_per_acre} / Acre</strong></div>
+              <div>Net Protection: <strong className={result.net_benefit_per_acre > 0 ? "text-emerald-700" : "text-rose-700"}>₹{result.net_benefit_per_acre} / Acre</strong></div>
             </div>
           </motion.div>
         )}

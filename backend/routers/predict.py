@@ -16,7 +16,7 @@ from typing import Optional
 
 from database import get_db
 from models import Detection, User
-from routers.auth import get_optional_user
+from routers.auth import get_optional_user, get_current_user
 from services.severity import estimate_leaf_severity
 from services.deficiency import differentiate_nutrient_deficiency
 from services.weather import get_spray_advisory
@@ -249,3 +249,35 @@ async def predict_plant_disease(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Prediction pipeline execution error: {str(e)}"
         )
+
+
+@router.get("/history")
+async def get_prediction_history(
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    """
+    Returns previous scan logs for the authenticated user.
+    """
+    try:
+        logs = db.query(Detection).filter(Detection.user_id == current_user.id).order_by(Detection.created_at.desc()).limit(50).all()
+        return [
+            {
+                "id": log.id,
+                "crop_type": log.crop_type,
+                "disease_class": log.disease_class,
+                "confidence": log.confidence,
+                "severity_percent": log.severity_percent,
+                "deficiency_flag": log.deficiency_flag,
+                "spray_advisory": log.spray_advisory,
+                "created_at": log.created_at.isoformat() if log.created_at else None
+            }
+            for log in logs
+        ]
+    except Exception as e:
+        backend_logger.error(f"Failed to fetch scan history: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Failed to retrieve scan history."
+        )
+
