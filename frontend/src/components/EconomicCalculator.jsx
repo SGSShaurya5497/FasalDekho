@@ -23,7 +23,10 @@ const EconomicCalculator = ({ lang }) => {
     try {
       const res = await fetch(`${API_BASE}/economic-threshold`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+          "bypass-tunnel-reminder": "true"
+        },
         body: JSON.stringify({
           crop_type: cropType,
           growth_stage: growthStage,

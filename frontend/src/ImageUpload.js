@@ -15,6 +15,7 @@ import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import cblogo from "./logo.PNG";
 import backgroundImage from "./backgroundImage.png";
+import API_BASE from "./utils/api";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -118,8 +119,11 @@ const ImageUpload = () => {
         formData.append("lon", location.lon);
       }
 
-      const res = await fetch(`http://localhost:8000/predict/${selectedModel}`, {
+      const res = await fetch(`${API_BASE}/predict/${selectedModel}`, {
         method: "POST",
+        headers: {
+          "bypass-tunnel-reminder": "true"
+        },
         body: formData,
       });
 

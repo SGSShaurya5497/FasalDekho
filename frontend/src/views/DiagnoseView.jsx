@@ -135,7 +135,9 @@ const DiagnoseView = ({ lang }) => {
         formData.append("lon", location.lon);
       }
 
-      const headers = {};
+      const headers = {
+        "bypass-tunnel-reminder": "true"
+      };
       const token = getStoredToken();
       if (token) {
         headers["Authorization"] = `Bearer ${token}`;

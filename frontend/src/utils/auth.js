@@ -35,7 +35,10 @@ export const setStoredUser = (user) => {
 export const signupUser = async (email, password, fullName) => {
   const res = await fetch(`${API_URL}/auth/signup`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { 
+      "Content-Type": "application/json",
+      "bypass-tunnel-reminder": "true"
+    },
     body: JSON.stringify({ email, password, full_name: fullName }),
   });
   if (!res.ok) {
@@ -51,7 +54,10 @@ export const signupUser = async (email, password, fullName) => {
 export const loginUser = async (email, password) => {
   const res = await fetch(`${API_URL}/auth/login`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { 
+      "Content-Type": "application/json",
+      "bypass-tunnel-reminder": "true"
+    },
     body: JSON.stringify({ email, password }),
   });
   if (!res.ok) {
@@ -66,7 +72,12 @@ export const loginUser = async (email, password) => {
 
 export const logoutUser = async () => {
   try {
-    await fetch(`${API_URL}/auth/logout`, { method: "POST" });
+    await fetch(`${API_URL}/auth/logout`, { 
+      method: "POST",
+      headers: {
+        "bypass-tunnel-reminder": "true"
+      }
+    });
   } catch (e) {
     // Ignore network error on logout
   }
@@ -78,7 +89,10 @@ export const fetchCurrentUser = async () => {
   const token = getStoredToken();
   if (!token) return null;
   const res = await fetch(`${API_URL}/auth/me`, {
-    headers: { Authorization: `Bearer ${token}` },
+    headers: { 
+      Authorization: `Bearer ${token}`,
+      "bypass-tunnel-reminder": "true"
+    },
   });
   if (!res.ok) {
     setStoredToken(null);
