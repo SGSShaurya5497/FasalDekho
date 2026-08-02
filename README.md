@@ -72,7 +72,57 @@ sequenceDiagram
     Nginx-->>Web: Forward payload to client
     Web->>Farmer: Render animated results card, advisory alert, and cost summary
 ```
+---
 
+## 3.1 Dependencies
+
+### Backend (Python — `requirements.txt`)
+| Package | Purpose |
+|---|---|
+| `fastapi` | Core backend web framework |
+| `uvicorn` | ASGI server to run FastAPI |
+| `tensorflow` | CNN model loading & inference |
+| `opencv-python-headless` | Severity estimation & deficiency image analysis (HSV segmentation, distance transform, Laplacian variance) |
+| `numpy` | Numerical/array operations for image processing |
+| `pillow` | Image loading/preprocessing |
+| `sqlalchemy` | ORM for PostgreSQL (users, detections, outbreak data) |
+| `psycopg2-binary` | PostgreSQL driver |
+| `pydantic` (v2) | Request/response schema validation |
+| `python-jose` / `pyjwt` | JWT token creation & verification |
+| `passlib[bcrypt]` | Password hashing |
+| `slowapi` | Rate limiting on prediction endpoint |
+| `httpx` | Async HTTP calls to Open-Meteo weather API |
+| `python-dotenv` | Environment variable management |
+| `python-multipart` | Handling multipart form-data (image uploads) |
+
+### Frontend (Node — `package.json`)
+| Package | Purpose |
+|---|---|
+| `react` / `react-dom` | Core UI framework |
+| `react-router-dom` | Client-side routing |
+| `tailwindcss` | Styling |
+| `framer-motion` | Animations and transitions |
+| `lucide-react` | Icon set |
+| `axios` | API requests to backend |
+| `leaflet` / `react-leaflet` | Outbreak heatmap map rendering |
+
+### Mobile (Android — Capacitor)
+| Package | Purpose |
+|---|---|
+| `@capacitor/core` | Core native bridge |
+| `@capacitor/cli` | Build/scaffolding tooling |
+| `@capacitor/android` | Android platform wrapper |
+| `@capacitor/camera` | Native camera access for leaf photo capture |
+| `@capacitor/geolocation` | Native geolocation for weather advisory & outbreak data |
+
+### Infrastructure
+| Tool | Purpose |
+|---|---|
+| Docker / Docker Compose | Containerized multi-service orchestration |
+| Nginx | Reverse proxy, SSL termination, static file serving |
+| PostgreSQL | Production database |
+
+---
 ---
 
 ## 4. Setup & Installation Instructions
