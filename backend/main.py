@@ -48,13 +48,18 @@ origins = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "http://localhost:8000",
-    "http://127.0.0.1:8000"
+    "http://127.0.0.1:8000",
+    # Capacitor Android WebView origin (required for APK)
+    "capacitor://localhost",
+    "https://localhost",
+    # LocalTunnel support
+    "https://cool-baboons-cross.loca.lt",
 ]
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
-    allow_origin_regex=r"http://(localhost|127\.0\.0\.1|192\.168\.\d+\.\d+)(:\d+)?",
+    allow_origin_regex=r"(http|https)://(localhost|127\.0\.0\.1|192\.168\.\d+\.\d+)(:\d+)?|capacitor://localhost|https://[\w\-]+\.loca\.lt",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
