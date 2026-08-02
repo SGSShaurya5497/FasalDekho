@@ -1,3 +1,10 @@
+
+
+https://github.com/user-attachments/assets/8c4d6901-cc7c-478f-a156-e60946779a99
+
+
+
+
 # 🌿 FasalDekho AI: Plant Disease Detection & Crop Advisory SaaS
 
 FasalDekho AI is a state-of-the-art, production-ready SaaS application designed to help farmers, agronomists, and crop-consulting professionals diagnose plant diseases, estimate infection severity, identify nutrient deficiencies, and receive weather-linked spray recommendations in real time.
